@@ -327,8 +327,15 @@ class Users(BaseAPI):
         return self.get('users.info',
                         params={'user': user, 'include_locale': include_locale})
 
-    def list(self, presence=False):
-        return self.get('users.list', params={'presence': int(presence)})
+    def list(self, presence=False, cursor=None, limit=None):
+        return self.get(
+            'users.list',
+            params={
+                'presence': int(presence),
+                'cursor': cursor,
+                'limit': limit,
+            }
+        )
 
     def identity(self):
         return self.get('users.identity')
